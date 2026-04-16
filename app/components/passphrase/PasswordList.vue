@@ -59,6 +59,7 @@ const columns = computed(() => {
       <TransitionGroup
         v-for="(column, columnIndex) in columns"
         :key="columnIndex"
+        name="passwords-column"
         class="passwords-column"
         tag="div"
       >

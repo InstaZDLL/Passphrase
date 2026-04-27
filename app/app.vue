@@ -90,13 +90,14 @@ const currentYear = new Date().getFullYear()
     <footer class="site-footer">
       <p>Passphrase © {{ currentYear }} · Génération en français, interface Nuxt modernisée.</p>
       <div class="site-footer__links">
-        <a
-          href="/api/passwords"
-        >
+        <a href="/api/passwords">
           API
         </a>
+        <NuxtLink to="/privacy">
+          Confidentialité
+        </NuxtLink>
         <a
-          href="https://github.com/AlexandreMonchain/PassphraseChromeExtension"
+          href="https://chromewebstore.google.com/detail/g%C3%A9n%C3%A9rateur-de-passphrase/bhlgfoknmmhgpfoanhoemjccephcanjd"
           target="_blank"
           rel="noreferrer noopener"
         >

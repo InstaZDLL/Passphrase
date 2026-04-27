@@ -70,8 +70,7 @@ export default defineNuxtConfig({
       permissionsPolicy: {
         'camera': [],
         'microphone': [],
-        'geolocation': [],
-        'interest-cohort': []
+        'geolocation': []
       },
       crossOriginEmbedderPolicy: 'unsafe-none',
       crossOriginOpenerPolicy: 'same-origin',

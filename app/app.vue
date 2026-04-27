@@ -16,10 +16,13 @@ useHead({
     lang: 'fr'
   },
   meta: [
-    { name: 'viewport', content: 'width=device-width, initial-scale=1' }
+    { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+    { name: 'theme-color', content: '#f7f2ea' },
+    { name: 'color-scheme', content: 'light' }
   ],
   link: [
-    { rel: 'icon', href: '/favicon.ico' }
+    { rel: 'icon', href: '/favicon.ico' },
+    { rel: 'apple-touch-icon', href: '/favicon.ico' }
   ],
   script: [
     {
@@ -46,6 +49,13 @@ const currentYear = new Date().getFullYear()
 <template>
   <div class="app-shell">
     <NuxtLoadingIndicator color="#e77b54" />
+
+    <a
+      href="#main-content"
+      class="skip-link"
+    >
+      Aller au contenu principal
+    </a>
 
     <header class="site-header">
       <NuxtLink

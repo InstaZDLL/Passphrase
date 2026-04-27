@@ -169,7 +169,10 @@ async function copyApiExample() {
 </script>
 
 <template>
-  <main class="flex-1">
+  <main
+    id="main-content"
+    class="flex-1"
+  >
     <section class="reveal-up max-w-6xl mx-auto text-center px-4 pt-24 pb-16 md:pt-32 md:pb-24">
       <p class="eyebrow">
         Générateur de passphrases françaises
@@ -203,6 +206,7 @@ async function copyApiExample() {
       <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
         <form
           class="reveal-up lg:col-span-5 border border-gray-200/60 bg-[var(--surface-main)] backdrop-blur-xl p-6 md:p-8 rounded-[2rem] shadow-xl shadow-gray-200/50 lg:sticky lg:top-28"
+          aria-label="Personnalisation de la passphrase"
           @submit.prevent="regeneratePasswords"
         >
           <div class="flex items-center justify-between mb-8">
@@ -217,7 +221,7 @@ async function copyApiExample() {
 
             <button
               type="button"
-              class="text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors"
+              class="text-sm font-medium text-gray-700 hover:text-gray-900 transition-colors"
               @click="resetToDefaults"
             >
               Réinitialiser
@@ -366,7 +370,7 @@ async function copyApiExample() {
               <p class="font-bold text-gray-900">
                 {{ item.label }}
               </p>
-              <span class="text-sm text-gray-500">{{ item.value }}</span>
+              <span class="text-sm text-gray-700">{{ item.value }}</span>
             </div>
           </div>
         </div>

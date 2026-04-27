@@ -3,7 +3,7 @@ export const entropyArticle = {
   description: 'Ce que mesure l’entropie, comment elle se calcule, et pourquoi une passphrase reste souvent plus réaliste qu’un mot de passe illisible.',
   publishedAt: '2024-11-03',
   author: 'Alexandre Monchain',
-  heroImage: '/images/blog-entropie.png',
+  heroImage: '/images/blog-entropie.webp',
   formula: 'Entropie = longueur × log2(taille de l’ensemble de caractères)',
   sections: [
     {

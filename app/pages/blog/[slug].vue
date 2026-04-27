@@ -59,7 +59,8 @@ useSeoMeta({
   articleAuthor: [entropyArticle.author],
   twitterTitle: entropyArticle.title,
   twitterDescription: entropyArticle.description,
-  twitterImage: absoluteUrl(entropyArticle.heroImage)
+  twitterImage: absoluteUrl(entropyArticle.heroImage),
+  twitterCard: 'summary_large_image'
 })
 
 const formattedDate = new Intl.DateTimeFormat('fr-FR', {
@@ -68,7 +69,10 @@ const formattedDate = new Intl.DateTimeFormat('fr-FR', {
 </script>
 
 <template>
-  <main class="article-page">
+  <main
+    id="main-content"
+    class="article-page"
+  >
     <section class="article-hero reveal-up">
       <div>
         <p class="eyebrow">
@@ -92,6 +96,7 @@ const formattedDate = new Intl.DateTimeFormat('fr-FR', {
         width="1792"
         height="1024"
         decoding="async"
+        fetchpriority="high"
       >
     </section>
 
@@ -125,7 +130,7 @@ const formattedDate = new Intl.DateTimeFormat('fr-FR', {
             Exemples
           </p>
 
-          <article
+          <div
             v-for="example in entropyArticle.examples"
             :key="example.password"
             class="example-card"
@@ -142,7 +147,7 @@ const formattedDate = new Intl.DateTimeFormat('fr-FR', {
                 {{ note }}
               </li>
             </ul>
-          </article>
+          </div>
         </section>
       </aside>
     </section>

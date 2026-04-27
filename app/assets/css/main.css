@@ -2,8 +2,8 @@
 @import "@nuxt/ui";
 
 @theme static {
-  --font-sans: "Manrope", sans-serif;
-  --font-display: "Fraunces", serif;
+  --font-sans: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Fraunces", "Times New Roman", serif;
 
   --color-primary-50: #fff4ef;
   --color-primary-100: #ffe6d9;
@@ -58,6 +58,42 @@ select {
 
 .app-shell {
   min-height: 100svh;
+}
+
+.skip-link {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 100;
+  padding: 0.75rem 1.1rem;
+  border-radius: 0.75rem;
+  background: var(--surface-dark);
+  color: white;
+  font-weight: 700;
+  transform: translateY(-200%);
+  transition: transform 180ms ease;
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+  transform: translateY(0);
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[role="button"]:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 0.4rem;
 }
 
 .site-header,

@@ -7,8 +7,19 @@ export default defineNuxtConfig({
     '@nuxt/ui',
     '@nuxt/a11y',
     '@nuxt/hints',
+    '@nuxt/fonts',
     'nuxt-security'
   ],
+
+  fonts: {
+    families: [
+      { name: 'Manrope', provider: 'google', weights: [400, 600, 700, 800], styles: ['normal'] },
+      { name: 'Fraunces', provider: 'google', weights: [600, 700, 800], styles: ['normal'] }
+    ],
+    defaults: {
+      preload: true
+    }
+  },
 
   devtools: {
     enabled: true

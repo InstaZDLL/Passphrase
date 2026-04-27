@@ -298,9 +298,20 @@ function sample<T>(items: T[]): T {
 
 function randomInt(min: number, max: number): number {
   const range = max - min + 1
-  const randomValues = crypto.getRandomValues(new Uint32Array(1))
 
-  return min + (randomValues[0]! % range)
+  // Rejection sampling to remove modulo bias on a 32-bit CSPRNG output.
+  // Discard draws that fall in the small "tail" beyond the largest
+  // multiple of range that fits in 2^32, then take modulo on what's left.
+  const ceiling = Math.floor(0x1_0000_0000 / range) * range
+  const buffer = new Uint32Array(1)
+
+  let value: number
+  do {
+    crypto.getRandomValues(buffer)
+    value = buffer[0]!
+  } while (value >= ceiling)
+
+  return min + (value % range)
 }
 
 function parseInteger(value: unknown, fallback: number): number {

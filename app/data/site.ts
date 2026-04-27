@@ -1,5 +1,5 @@
 export const siteName = 'Passphrase'
-export const siteUrl = 'https://passphrase.fr'
+export const siteUrl = 'https://www.passphrase.ch'
 export const defaultOgImage = '/images/passphrase-thumbnail.png'
 
 export function absoluteUrl(path = '/'): string {

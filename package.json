@@ -19,7 +19,10 @@
     "@nuxt/a11y": "1.0.0-alpha.1",
     "@nuxt/hints": "1.0.3",
     "@nuxt/ui": "^4.7.0",
+    "@vercel/analytics": "^2.0.1",
+    "@vercel/speed-insights": "^2.0.0",
     "nuxt": "^4.4.2",
+    "nuxt-security": "^2.5.1",
     "tailwindcss": "^4.2.4"
   },
   "devDependencies": {

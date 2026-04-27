@@ -8,6 +8,8 @@ export default defineNuxtConfig({
     '@nuxt/a11y',
     '@nuxt/hints',
     '@nuxt/fonts',
+    '@vercel/analytics/nuxt',
+    '@vercel/speed-insights/nuxt',
     'nuxt-security'
   ],
 

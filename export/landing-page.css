@@ -1,7 +1,4 @@
-@import "tailwindcss";
-@import "@nuxt/ui";
-
-@theme static {
+:root {
   --font-sans: "Manrope", sans-serif;
   --font-display: "Fraunces", serif;
 
@@ -16,9 +13,6 @@
   --color-primary-800: #8f3e28;
   --color-primary-900: #693020;
   --color-primary-950: #34160d;
-}
-
-:root {
   --page-bg: #f7f2ea;
   --page-ink: #1f2933;
   --page-muted: #566574;
@@ -722,15 +716,9 @@ select {
   padding: 4rem 0 2rem;
 }
 
-.article-hero h1 {
-  font-size: clamp(2.4rem, 5vw, 3.6rem);
-  text-wrap: balance;
-}
-
 .article-hero__lede {
   max-width: 42rem;
-  margin-top: 1.2rem;
-  font-size: 1.15rem;
+  margin-top: 1rem;
   line-height: 1.7;
 }
 
@@ -765,17 +753,12 @@ select {
   border-bottom: 1px solid rgba(31, 41, 51, 0.08);
 }
 
-.formula-block h2 {
-  font-size: clamp(1.6rem, 2.6vw, 2.1rem);
-  line-height: 1.2;
-}
-
 .article-section {
   padding-top: 1.5rem;
 }
 
 .article-section h2 {
-  font-size: clamp(1.2rem, 2vw, 1.55rem);
+  font-size: clamp(1.7rem, 3.4vw, 2.3rem);
   margin-bottom: 0.75rem;
 }
 
@@ -787,10 +770,6 @@ select {
 .recommendation-list {
   display: grid;
   gap: 1rem;
-}
-
-.recommendations__column h2 {
-  margin-bottom: 1.5rem;
 }
 
 .example-card,

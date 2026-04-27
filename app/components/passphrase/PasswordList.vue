@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { GeneratedPassword } from '#shared/passphrase'
 
-const props = defineProps<{
+defineProps<{
   items: GeneratedPassword[]
   pending?: boolean
   revision?: number
@@ -23,53 +23,50 @@ async function copyPassword(password: string) {
     copiedPassword.value = null
   }
 }
-
-const columns = computed(() => {
-  const midpoint = Math.ceil(props.items.length / 2)
-  return [props.items.slice(0, midpoint), props.items.slice(midpoint)]
-})
 </script>
 
 <template>
   <section
-    class="passwords-panel reveal-up"
-    :class="{ 'passwords-panel--pending': pending }"
+    class="reveal-up relative overflow-hidden rounded-[2rem] bg-gray-900 text-white p-6 md:p-8 shadow-2xl"
     :aria-busy="pending ? 'true' : 'false'"
     aria-live="polite"
     aria-labelledby="passwords-heading"
   >
-    <div class="passwords-panel__header">
+    <div class="absolute top-0 left-0 w-[500px] h-[500px] bg-primary-500/20 rounded-full blur-[80px] -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
+
+    <div class="relative z-10 mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
       <div>
-        <p class="eyebrow">
+        <p class="text-primary-400 font-extrabold uppercase tracking-[0.18em] text-xs mb-2">
           Résultats
         </p>
-        <h2 id="passwords-heading">
+        <h2
+          id="passwords-heading"
+          class="font-display text-3xl leading-tight"
+        >
           10 variantes prêtes à copier
         </h2>
       </div>
-
-      <p class="passwords-panel__hint">
+      <p class="text-gray-400 text-sm max-w-xs">
         Clique pour copier, puis ajuste le motif jusqu’à obtenir l’équilibre qui te convient.
       </p>
     </div>
 
     <div
-      class="passwords-grid"
+      class="relative z-10 transition-all duration-300"
+      :class="pending ? 'opacity-50 scale-[0.99]' : 'opacity-100'"
     >
       <TransitionGroup
-        v-for="(column, columnIndex) in columns"
-        :key="columnIndex"
         name="passwords-column"
-        class="passwords-column"
         tag="div"
+        class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5"
       >
         <article
-          v-for="(item, rowIndex) in column"
-          :key="`${revision ?? 0}-${columnIndex}-${rowIndex}-${item.password}`"
-          class="password-row"
+          v-for="(item, index) in items"
+          :key="`${revision ?? 0}-${index}-${item.password}`"
+          class="flex flex-col justify-between p-5 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:-translate-y-1 transition-all"
         >
-          <div class="password-row__content">
-            <p class="password-row__value">
+          <div class="mb-5">
+            <p class="font-display text-xl sm:text-2xl text-white mb-3 break-all leading-tight">
               {{ item.password }}
             </p>
             <PassphraseEntropyBadge
@@ -80,11 +77,11 @@ const columns = computed(() => {
 
           <button
             type="button"
-            class="copy-button"
+            class="w-full py-2.5 rounded-lg bg-white/10 hover:bg-white/20 text-white font-medium text-sm transition-colors"
             :aria-label="`Copier ${item.password}`"
             @click="copyPassword(item.password)"
           >
-            {{ copiedPassword === item.password ? 'Copié' : 'Copier' }}
+            {{ copiedPassword === item.password ? 'Copié ✓' : 'Copier' }}
           </button>
         </article>
       </TransitionGroup>
@@ -93,12 +90,12 @@ const columns = computed(() => {
     <Transition name="passwords-overlay">
       <div
         v-if="pending"
-        class="passwords-loading"
+        class="absolute inset-0 z-20 flex items-center justify-center gap-3 bg-gray-900/40 backdrop-blur-sm text-gray-200 pointer-events-none"
         role="status"
         aria-live="polite"
         aria-atomic="true"
       >
-        <span class="passwords-loading__dot" />
+        <span class="w-3 h-3 rounded-full bg-primary-500 animate-pulse" />
         <span>Génération en cours…</span>
       </div>
     </Transition>

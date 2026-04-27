@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Passphrase - Générateur de mots de passe</title>
+  
+  <!-- Polices -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..800&family=Manrope:wght@400..700;800&display=swap" rel="stylesheet">
+  
+  <!-- Vue 3 & Tailwind v4 CDNs -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <!-- Configuration Tailwind sur-mesure -->
+  <style type="text/tailwindcss">
+    @theme {
+      --font-sans: 'Manrope', sans-serif;
+      --font-display: 'Fraunces', serif;
+      --color-primary-500: #e77b54;
+      --color-primary-600: #d96541;
+    }
+    
+    body {
+      background-color: #f7f2ea;
+      background-image: 
+        radial-gradient(circle at top left, rgba(244, 198, 150, 0.25), transparent 30%),
+        radial-gradient(circle at 85% 12%, rgba(206, 228, 255, 0.35), transparent 30%),
+        linear-gradient(180deg, #fbf7f0 0%, #f5efe6 100%);
+      color: #1f2933;
+    }
+
+    .glass-panel {
+      background: rgba(255, 252, 247, 0.85);
+      backdrop-filter: blur(20px);
+    }
+    
+    /* Custom Nuxt UI style inputs */
+    .nuxt-input {
+      @apply w-full px-4 py-3 rounded-xl border border-gray-200 bg-white/80 text-gray-900 shadow-sm transition-colors focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 outline-none;
+    }
+  </style>
+</head>
+<body class="font-sans antialiased min-h-screen flex flex-col">
+
+  <div id="app" class="flex-1 flex flex-col">
+    <!-- Header -->
+    <header class="sticky top-4 z-30 max-w-6xl mx-auto w-[calc(100%-2rem)] flex items-center justify-between px-6 py-4 glass-panel border border-gray-200/50 rounded-full shadow-sm">
+      <a href="/" class="flex items-center gap-3 font-bold uppercase tracking-wide text-sm">
+        <span class="grid place-items-center w-8 h-8 rounded-full bg-gray-900 text-white font-display text-lg">P</span>
+        Passphrase
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-gray-600 font-medium text-sm">
+        <a href="#generator" class="hover:text-gray-900 transition-colors">Générateur</a>
+        <a href="#api" class="hover:text-gray-900 transition-colors">API</a>
+        <a href="#" class="hover:text-gray-900 transition-colors">Entropie</a>
+      </nav>
+    </header>
+
+    <main class="flex-1">
+      <!-- Hero Banner (Plus compact et vendeur) -->
+      <section class="max-w-4xl mx-auto text-center px-4 pt-24 pb-16 md:pt-32 md:pb-24">
+        <p class="text-primary-600 font-bold tracking-[0.2em] uppercase text-xs sm:text-sm mb-6">
+          Générateur de passphrases françaises
+        </p>
+        <h1 class="font-display text-5xl sm:text-6xl md:text-7xl font-bold text-gray-900 leading-[1.05] mb-8 text-balance">
+          Des mots de passe lisibles, <br class="hidden sm:block"/> toujours costauds.
+        </h1>
+        <p class="text-lg md:text-xl text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed">
+          Générez 10 passphrases en un clic. Sécurisez vos comptes avec des mots que vous retiendrez vraiment, sans interface vieillissante.
+        </p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href="#generator" class="w-full sm:w-auto px-8 py-4 bg-gray-900 text-white rounded-full font-bold hover:-translate-y-0.5 hover:bg-gray-800 transition-all shadow-lg shadow-gray-900/20">
+            Générer maintenant
+          </a>
+          <a href="#api" class="w-full sm:w-auto px-8 py-4 bg-white/60 border border-gray-200 text-gray-900 rounded-full font-bold hover:bg-white transition-all backdrop-blur-sm">
+            Découvrir l'API
+          </a>
+        </div>
+      </section>
+
+      <!-- Workspace (Formulaire + Résultats aérés) -->
+      <section id="generator" class="max-w-7xl mx-auto px-4 pb-24">
+        <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+          
+          <!-- Panneau des préférences (façon Nuxt UI Card) -->
+          <form @submit.prevent="generatePasswords" class="lg:col-span-5 glass-panel border border-gray-200 p-6 md:p-8 rounded-[2rem] shadow-xl shadow-gray-200/50 sticky top-28">
+            <div class="flex items-center justify-between mb-8">
+              <div>
+                <p class="text-primary-600 font-bold tracking-widest uppercase text-xs mb-1">Préférences</p>
+                <h3 class="font-display text-2xl font-bold text-gray-900">Ton schéma</h3>
+              </div>
+              <button type="button" @click="resetForm" class="text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors">
+                Réinitialiser
+              </button>
+            </div>
+
+            <div class="grid grid-cols-2 gap-5 mb-6">
+              <label class="col-span-2 sm:col-span-1 block">
+                <span class="block text-sm font-medium text-gray-700 mb-2">Nombre de mots</span>
+                <select v-model="form.nb_mots" class="nuxt-input">
+                  <option v-for="opt in NUMBER_OF_WORD_CHOICES" :key="opt.value" :value="opt.value">{{ opt.label }}</option>
+                </select>
+              </label>
+
+              <label class="col-span-2 sm:col-span-1 block">
+                <span class="block text-sm font-medium text-gray-700 mb-2">Séparateur</span>
+                <select v-model="form.separateur" class="nuxt-input">
+                  <option v-for="opt in SEPARATOR_CHOICES" :key="opt.value" :value="opt.value">{{ opt.label }}</option>
+                </select>
+              </label>
+
+              <label class="col-span-2 sm:col-span-1 block">
+                <span class="block text-sm font-medium text-gray-700 mb-2">Chiffres finaux</span>
+                <select v-model="form.longueur_nombre" class="nuxt-input">
+                  <option v-for="opt in NUMBER_SUFFIX_CHOICES" :key="opt.value" :value="opt.value">{{ opt.label }}</option>
+                </select>
+              </label>
+
+              <label class="col-span-2 sm:col-span-1 block">
+                <span class="block text-sm font-medium text-gray-700 mb-2">Caractère final</span>
+                <select v-model="form.caractere_special" class="nuxt-input">
+                  <option v-for="opt in SPECIAL_CHARACTER_CHOICES" :key="opt.value" :value="opt.value">{{ opt.label }}</option>
+                </select>
+              </label>
+
+              <label class="col-span-2 block">
+                <span class="block text-sm font-medium text-gray-700 mb-2">Longueur minimale</span>
+                <input type="number" v-model="form.longueur_minimale" min="8" max="50" class="nuxt-input" />
+              </label>
+            </div>
+
+            <div class="space-y-3 mb-8">
+              <label class="flex items-center gap-3 p-4 rounded-xl bg-white/50 border border-gray-100 cursor-pointer hover:bg-white transition-colors">
+                <input type="checkbox" v-model="form.majuscule_debut" class="w-5 h-5 rounded border-gray-300 text-primary-500 focus:ring-primary-500" />
+                <span class="text-sm font-medium text-gray-700">Majuscule en début de mot</span>
+              </label>
+              <label class="flex items-center gap-3 p-4 rounded-xl bg-white/50 border border-gray-100 cursor-pointer hover:bg-white transition-colors">
+                <input type="checkbox" v-model="form.majuscule_aleatoire" class="w-5 h-5 rounded border-gray-300 text-primary-500 focus:ring-primary-500" />
+                <span class="text-sm font-medium text-gray-700">Majuscule aléatoire</span>
+              </label>
+              <label class="flex items-center gap-3 p-4 rounded-xl bg-white/50 border border-gray-100 cursor-pointer hover:bg-white transition-colors">
+                <input type="checkbox" v-model="form.caracteres_accentues" class="w-5 h-5 rounded border-gray-300 text-primary-500 focus:ring-primary-500" />
+                <span class="text-sm font-medium text-gray-700">Conserver les accents</span>
+              </label>
+            </div>
+
+            <button type="submit" class="w-full py-4 bg-gray-900 text-white rounded-xl font-bold hover:bg-gray-800 transition-colors flex justify-center items-center gap-2">
+              <span v-if="isGenerating" class="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
+              Générer 10 passphrases
+            </button>
+          </form>
+
+          <!-- Panneau des résultats (Espacé et clair) -->
+          <div class="lg:col-span-7 bg-gray-900 text-white rounded-[2rem] p-6 md:p-8 shadow-2xl relative overflow-hidden">
+            <!-- Décoration de fond -->
+            <div class="absolute top-0 left-0 w-[500px] h-[500px] bg-primary-500/20 rounded-full blur-[80px] -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
+            
+            <div class="relative z-10 mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
+              <div>
+                <p class="text-primary-400 font-bold tracking-widest uppercase text-xs mb-2">Résultats</p>
+                <h2 class="font-display text-3xl font-bold">Prêtes à copier</h2>
+              </div>
+              <p class="text-gray-400 text-sm max-w-xs">Clique pour copier la passphrase de ton choix et l'utiliser instantanément.</p>
+            </div>
+
+            <div :class="['transition-opacity duration-300', isGenerating ? 'opacity-50' : 'opacity-100']">
+              <!-- Grille à 1 colonne (plus d'espace) ou 2 colonnes très espacées -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5">
+                <article 
+                  v-for="(item, index) in currentPasswords" 
+                  :key="index"
+                  class="group flex flex-col justify-between p-5 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all hover:-translate-y-1"
+                >
+                  <div class="mb-5">
+                    <p class="font-display text-xl sm:text-2xl font-bold text-white mb-3 break-all leading-tight">
+                      {{ item.password }}
+                    </p>
+                    <span :class="getEntropyClass(item.class)" class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
+                      {{ ENTROPY_LABEL[item.class] }} · {{ item.entropy }} bits
+                    </span>
+                  </div>
+                  <button 
+                    @click="copyPassword(item.password, index)"
+                    class="w-full py-2.5 rounded-lg bg-white/10 hover:bg-white/20 text-white font-medium text-sm transition-colors flex items-center justify-center gap-2"
+                  >
+                    <span v-if="copiedIndex === index">Copié ! ✅</span>
+                    <span v-else>Copier</span>
+                  </button>
+                </article>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Section API -->
+      <section id="api" class="max-w-4xl mx-auto px-4 pb-24">
+        <div class="glass-panel border border-gray-200 rounded-[2rem] p-8 md:p-12 shadow-sm text-center">
+          <p class="text-primary-600 font-bold tracking-widest uppercase text-sm mb-3">Pour les développeurs</p>
+          <h2 class="font-display text-3xl md:text-4xl font-bold text-gray-900 mb-4">La route API historique reste en place.</h2>
+          <p class="text-gray-600 text-lg mb-8 max-w-2xl mx-auto">
+            Générez des mots de passe directement depuis vos applications. Conservez les paramètres publics sans casser vos intégrations.
+          </p>
+          
+          <div class="bg-gray-900 rounded-xl p-4 md:p-6 text-left overflow-x-auto shadow-inner mb-6">
+            <code class="text-gray-100 text-sm md:text-base whitespace-pre-wrap break-all font-mono">
+              /api/passwords?nb_mots=2&longueur_minimale=12&separateur=random...
+            </code>
+          </div>
+
+          <a href="#" class="inline-flex items-center justify-center px-6 py-3 border-2 border-gray-900 text-gray-900 font-bold rounded-full hover:bg-gray-900 hover:text-white transition-colors">
+            Voir la documentation API
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="max-w-6xl mx-auto w-full px-6 py-8 border-t border-gray-200/60 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500">
+      <p>Passphrase © 2026 · Interface repensée avec Vue & Tailwind CSS.</p>
+      <div class="flex gap-6">
+        <a href="#api" class="hover:text-gray-900 font-medium">API</a>
+        <a href="#" class="hover:text-gray-900 font-medium">Extension Chrome</a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const { createApp, ref } = Vue;
+
+    // Données de base
+    const NUMBER_OF_WORD_CHOICES = [
+      { label: '2 mots', value: 2 }, { label: '3 mots', value: 3 }, { label: '4 mots', value: 4 },
+      { label: '5 mots', value: 5 }, { label: '6 mots', value: 6 }, { label: '7 mots', value: 7 }
+    ];
+    const SEPARATOR_CHOICES = [
+      { label: 'Aléatoire', value: 'random' }, { label: 'Tiret (-)', value: '-' },
+      { label: 'Underscore (_)', value: '_' }, { label: 'Espace', value: ' ' },
+      { label: 'Étoile (*)', value: '*' }, { label: 'Slash (/)', value: '/' }, { label: 'Plus (+)', value: '+' }
+    ];
+    const NUMBER_SUFFIX_CHOICES = [
+      { label: '0 chiffre', value: 0 }, { label: '1 chiffre', value: 1 }, { label: '2 chiffres', value: 2 },
+      { label: '3 chiffres', value: 3 }, { label: '4 chiffres', value: 4 }, { label: '5 chiffres', value: 5 }
+    ];
+    const SPECIAL_CHARACTER_CHOICES = [
+      { label: 'Aléatoire', value: 'random' }, { label: 'Aucun', value: 'none' },
+      { label: 'Dollar ($)', value: '$' }, { label: 'Exclamation (!)', value: '!' },
+      { label: 'Point d’interrogation (?)', value: '?' }, { label: 'Arobase (@)', value: '@' }
+    ];
+
+    const DEFAULT_FORM = {
+      nb_mots: 2, separateur: 'random', majuscule_debut: true, majuscule_aleatoire: false,
+      longueur_nombre: 2, caractere_special: 'random', longueur_minimale: 12, caracteres_accentues: true
+    };
+
+    const SAMPLE_PASSWORDS = [
+      { password: 'Cerise-Voyage42$', entropy: 78, class: 'very-weak' },
+      { password: 'Brume_Fougère07!', entropy: 92, class: 'weak' },
+      { password: 'Tonnerre*Galet18', entropy: 104, class: 'medium' },
+      { password: 'Coquelicot+Rive33', entropy: 112, class: 'good' },
+      { password: 'Mésange/Aube61?', entropy: 118, class: 'good' },
+      { password: 'Orage-Granit84@', entropy: 122, class: 'strong' },
+      { password: 'Pissenlit Sable 47', entropy: 126, class: 'strong' },
+      { password: 'Vermeil*Aubépine0', entropy: 132, class: 'very-strong' },
+      { password: 'Lichen+Marais 76$', entropy: 138, class: 'very-strong' },
+      { password: 'Soleil-Rocaille12', entropy: 145, class: 'very-strong' }
+    ];
+
+    const ENTROPY_LABEL = {
+      'very-weak': 'Très faible', 'weak': 'Faible', 'medium': 'Moyen',
+      'good': 'Bon', 'strong': 'Fort', 'very-strong': 'Très fort'
+    };
+
+    createApp({
+      setup() {
+        const form = ref({ ...DEFAULT_FORM });
+        const currentPasswords = ref([...SAMPLE_PASSWORDS]);
+        const isGenerating = ref(false);
+        const copiedIndex = ref(null);
+
+        const getEntropyClass = (level) => {
+          const base = "bg-opacity-20 ";
+          switch(level) {
+            case 'very-weak': return "bg-red-500 text-red-200";
+            case 'weak': return "bg-orange-500 text-orange-200";
+            case 'medium': return "bg-yellow-500 text-yellow-200";
+            case 'good': return "bg-green-500 text-green-200";
+            case 'strong': return "bg-teal-500 text-teal-200";
+            case 'very-strong': return "bg-sky-500 text-sky-200";
+            default: return "bg-gray-500 text-gray-200";
+          }
+        };
+
+        const generatePasswords = () => {
+          isGenerating.value = true;
+          // Simulation d'un appel réseau / calcul
+          setTimeout(() => {
+            currentPasswords.value = [...currentPasswords.value].sort(() => 0.5 - Math.random());
+            isGenerating.value = false;
+          }, 600);
+        };
+
+        const resetForm = () => {
+          form.value = { ...DEFAULT_FORM };
+        };
+
+        const copyPassword = (pwd, index) => {
+          navigator.clipboard.writeText(pwd);
+          copiedIndex.value = index;
+          setTimeout(() => {
+            copiedIndex.value = null;
+          }, 2000);
+        };
+
+        return {
+          form,
+          currentPasswords,
+          isGenerating,
+          copiedIndex,
+          NUMBER_OF_WORD_CHOICES,
+          SEPARATOR_CHOICES,
+          NUMBER_SUFFIX_CHOICES,
+          SPECIAL_CHARACTER_CHOICES,
+          ENTROPY_LABEL,
+          getEntropyClass,
+          generatePasswords,
+          resetForm,
+          copyPassword
+        };
+      }
+    }).mount('#app');
+  </script>
+</body>
+</html>

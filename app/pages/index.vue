@@ -169,79 +169,62 @@ async function copyApiExample() {
 </script>
 
 <template>
-  <main class="home-page">
-    <section class="hero">
-      <div class="hero__aurora hero__aurora--left" />
-      <div class="hero__aurora hero__aurora--right" />
-
-      <div class="hero__content reveal-up">
-        <p class="eyebrow">
-          Générateur de passphrases françaises
-        </p>
-        <h1>
-          Des mots de passe plus lisibles, plus mémorisables, toujours costauds.
-        </h1>
-        <p class="hero__lede">
-          Compose 10 passphrases en un clic, compare leur entropie et conserve tes préférences sans retomber dans une interface vieillissante.
-        </p>
-
-        <div class="hero__actions">
-          <a
-            href="#generator"
-            class="primary-link"
-          >
-            Générer maintenant
-          </a>
-          <NuxtLink
-            to="/blog/entropie"
-            class="secondary-link"
-          >
-            Comprendre l’entropie
-          </NuxtLink>
-        </div>
+  <main class="flex-1">
+    <section class="reveal-up max-w-6xl mx-auto text-center px-4 pt-24 pb-16 md:pt-32 md:pb-24">
+      <p class="eyebrow">
+        Générateur de passphrases françaises
+      </p>
+      <h1 class="font-display text-gray-900 leading-[1.1] text-4xl sm:text-5xl md:text-6xl mb-8 text-balance">
+        Des mots de passe plus lisibles, plus mémorisables, toujours costauds.
+      </h1>
+      <p class="text-lg md:text-xl text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed">
+        Compose 10 passphrases en un clic, compare leur entropie et conserve tes préférences sans retomber dans une interface vieillissante.
+      </p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a
+          href="#generator"
+          class="w-full sm:w-auto px-8 py-4 bg-gray-900 !text-white rounded-full font-bold hover:-translate-y-0.5 hover:bg-gray-800 transition-all shadow-lg shadow-gray-900/20"
+        >
+          Générer maintenant
+        </a>
+        <NuxtLink
+          to="/blog/entropie"
+          class="w-full sm:w-auto px-8 py-4 bg-white/60 border border-gray-200 text-gray-900 rounded-full font-bold hover:bg-white transition-all backdrop-blur-sm"
+        >
+          Comprendre l’entropie
+        </NuxtLink>
       </div>
     </section>
 
     <section
       id="generator"
-      class="workspace"
+      class="max-w-7xl mx-auto px-4 pb-24"
     >
-      <div class="workspace__intro reveal-up">
-        <div>
-          <p class="eyebrow">
-            Workspace
-          </p>
-          <h2>Règle le motif, puis laisse le moteur produire le reste.</h2>
-        </div>
-
-        <p class="workspace__copy">
-          Les mêmes routes publiques restent disponibles, mais l’expérience bascule dans une interface Nuxt plus directe.
-        </p>
-      </div>
-
-      <div class="workspace__grid">
+      <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
         <form
-          class="generator-panel reveal-up"
+          class="reveal-up lg:col-span-5 border border-gray-200/60 bg-[var(--surface-main)] backdrop-blur-xl p-6 md:p-8 rounded-[2rem] shadow-xl shadow-gray-200/50 lg:sticky lg:top-28"
           @submit.prevent="regeneratePasswords"
         >
-          <div class="generator-panel__header">
+          <div class="flex items-center justify-between mb-8">
             <div>
-              <p class="eyebrow">
+              <p class="eyebrow !mb-1">
                 Préférences
               </p>
-              <h3>Personnalise ton schéma</h3>
+              <h3 class="font-display text-2xl text-gray-900">
+                Personnalise ton schéma
+              </h3>
             </div>
 
             <button
               type="button"
-              class="ghost-button"
+              class="text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors"
               @click="resetToDefaults"
             >
               Réinitialiser
             </button>
           </div>
 
-          <div class="generator-form">
+          <div class="generator-form !mt-0 mb-6">
             <label class="field">
               <span>Nombre de mots</span>
               <select v-model.number="form.nb_mots">
@@ -305,7 +288,7 @@ async function copyApiExample() {
             </label>
           </div>
 
-          <div class="toggle-grid">
+          <div class="toggle-grid !mt-0 mb-8">
             <label class="toggle">
               <input
                 v-model="form.majuscule_debut"
@@ -331,52 +314,59 @@ async function copyApiExample() {
             </label>
           </div>
 
-          <div class="generator-panel__footer">
-            <button
-              type="submit"
-              class="primary-button"
-              :disabled="pending"
-            >
-              {{ pending ? 'Génération…' : 'Générer 10 passphrases' }}
-            </button>
+          <button
+            type="submit"
+            class="w-full py-4 bg-gray-900 text-white rounded-xl font-bold hover:bg-gray-800 transition-colors flex justify-center items-center gap-2 disabled:opacity-70 disabled:cursor-wait"
+            :disabled="pending"
+          >
+            <span
+              v-if="pending"
+              class="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"
+            />
+            {{ pending ? 'Génération…' : 'Générer 10 passphrases' }}
+          </button>
 
-            <p
-              v-if="requestError"
-              class="form-error"
-            >
-              {{ requestError }}
-            </p>
-          </div>
+          <p
+            v-if="requestError"
+            class="form-error mt-4"
+          >
+            {{ requestError }}
+          </p>
         </form>
 
         <PassphrasePasswordList
           :items="passwords"
           :pending="pending"
           :revision="passwordRevision"
+          class="lg:col-span-7"
         />
       </div>
     </section>
 
-    <section class="insights">
-      <div class="insights__column reveal-up">
+    <section class="max-w-6xl mx-auto px-4 pb-24 grid md:grid-cols-2 gap-8 items-start">
+      <div class="reveal-up border border-gray-200/60 bg-[var(--surface-main)] backdrop-blur-xl rounded-[2rem] p-6 md:p-8 shadow-sm">
         <p class="eyebrow">
           Lecture rapide
         </p>
-        <h2>Une échelle d’entropie lisible au premier regard.</h2>
+        <h2 class="font-display text-3xl md:text-4xl text-gray-900 mb-6">
+          Une échelle d’entropie lisible au premier regard.
+        </h2>
 
-        <div class="legend-list">
+        <div class="grid">
           <div
             v-for="item in entropyLegend"
             :key="item.level"
-            class="legend-item"
+            class="flex items-center gap-4 py-3 border-t border-gray-200/60 first:border-t-0"
           >
             <span
               class="legend-dot"
               :data-level="item.level"
             />
             <div>
-              <p>{{ item.label }}</p>
-              <span>{{ item.value }}</span>
+              <p class="font-bold text-gray-900">
+                {{ item.label }}
+              </p>
+              <span class="text-sm text-gray-500">{{ item.value }}</span>
             </div>
           </div>
         </div>
@@ -384,29 +374,31 @@ async function copyApiExample() {
 
       <div
         id="api"
-        class="api-panel reveal-up"
+        class="reveal-up border border-gray-200/60 bg-[var(--surface-main)] backdrop-blur-xl rounded-[2rem] p-6 md:p-8 shadow-sm"
       >
         <p class="eyebrow">
           API
         </p>
-        <h2>La route historique reste en place.</h2>
-        <p>
-          `GET /api/passwords` conserve les paramètres publics existants pour ne pas casser les intégrations déjà en circulation.
+        <h2 class="font-display text-3xl md:text-4xl text-gray-900 mb-4">
+          La route historique reste en place.
+        </h2>
+        <p class="text-gray-600 leading-relaxed mb-6">
+          <code>GET /api/passwords</code> conserve les paramètres publics existants pour ne pas casser les intégrations déjà en circulation.
         </p>
 
-        <pre class="api-snippet">{{ apiExampleUrl }}</pre>
+        <pre class="bg-gray-900 rounded-xl p-4 text-gray-100 text-sm overflow-x-auto whitespace-pre-wrap break-all mb-6 font-mono">{{ apiExampleUrl }}</pre>
 
-        <div class="api-panel__actions">
+        <div class="flex flex-wrap gap-3 items-center">
           <button
             type="button"
-            class="ghost-button"
+            class="px-5 py-2.5 border border-gray-200 bg-white/60 text-gray-900 rounded-full font-medium hover:bg-white transition-colors"
             @click="copyApiExample"
           >
             {{ apiExampleCopied ? 'Copié' : 'Copier l’exemple' }}
           </button>
 
           <a
-            class="secondary-link"
+            class="px-5 py-2.5 border border-gray-200 bg-white/60 text-gray-900 rounded-full font-medium hover:bg-white transition-colors"
             :href="apiExampleUrl"
             target="_blank"
             rel="noreferrer noopener"
@@ -417,25 +409,29 @@ async function copyApiExample() {
       </div>
     </section>
 
-    <section class="extension-strip reveal-up">
-      <div>
-        <p class="eyebrow">
-          Extension Chrome
-        </p>
-        <h2>Besoin d’aller plus vite dans le navigateur ?</h2>
-        <p>
-          L’extension reste disponible pour générer une passphrase sans quitter ton contexte de navigation.
-        </p>
-      </div>
+    <section class="max-w-6xl mx-auto px-4 pb-16">
+      <div class="reveal-up border border-gray-200/60 bg-[var(--surface-main)] backdrop-blur-xl rounded-[2rem] p-6 md:p-8 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div>
+          <p class="eyebrow">
+            Extension Chrome
+          </p>
+          <h2 class="font-display text-2xl md:text-3xl text-gray-900 mb-2">
+            Besoin d’aller plus vite dans le navigateur ?
+          </h2>
+          <p class="text-gray-600">
+            L’extension reste disponible pour générer une passphrase sans quitter ton contexte de navigation.
+          </p>
+        </div>
 
-      <a
-        href="https://chromewebstore.google.com/detail/g%C3%A9n%C3%A9rateur-de-passphrase/bhlgfoknmmhgpfoanhoemjccephcanjd"
-        target="_blank"
-        rel="noreferrer noopener"
-        class="primary-link"
-      >
-        Installer l’extension
-      </a>
+        <a
+          href="https://chromewebstore.google.com/detail/g%C3%A9n%C3%A9rateur-de-passphrase/bhlgfoknmmhgpfoanhoemjccephcanjd"
+          target="_blank"
+          rel="noreferrer noopener"
+          class="shrink-0 px-6 py-3 bg-gray-900 !text-white rounded-full font-bold hover:bg-gray-800 transition-colors"
+        >
+          Installer l’extension
+        </a>
+      </div>
     </section>
   </main>
 </template>

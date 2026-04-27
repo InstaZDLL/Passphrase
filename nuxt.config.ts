@@ -68,9 +68,9 @@ export default defineNuxtConfig({
       xFrameOptions: 'DENY',
       referrerPolicy: 'strict-origin-when-cross-origin',
       permissionsPolicy: {
-        'camera': [],
-        'microphone': [],
-        'geolocation': []
+        camera: [],
+        microphone: [],
+        geolocation: []
       },
       crossOriginEmbedderPolicy: 'unsafe-none',
       crossOriginOpenerPolicy: 'same-origin',

@@ -137,15 +137,10 @@ a:focus-visible {
 }
 
 .site-brand__mark {
-  display: grid;
-  place-items: center;
+  display: block;
   width: 2.25rem;
   height: 2.25rem;
-  border-radius: 999px;
-  background: var(--surface-dark);
-  color: white;
-  font-family: var(--font-display);
-  font-size: 1.1rem;
+  flex-shrink: 0;
 }
 
 .site-nav {

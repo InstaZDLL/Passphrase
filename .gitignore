@@ -25,3 +25,6 @@ logs
 
 # Reference clone of Alexandre Monchain's original extension (read-only upstream)
 PassphraseChromeExtension/
+
+# CodeRabbit CLI output
+review.txt

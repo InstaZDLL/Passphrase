@@ -23,7 +23,8 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "typecheck": "nuxt typecheck",
-    "og": "node scripts/og/generate.mjs"
+    "og": "node scripts/og/generate.mjs",
+    "store-assets": "node scripts/store/generate.mjs"
   },
   "dependencies": {
     "@iconify-json/lucide": "^1.2.104",

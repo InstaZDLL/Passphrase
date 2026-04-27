@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Fraunces:opsz,wght@9..144,700;9..144,800&display=swap"
+    />
+    <style>
+      * { box-sizing: border-box; }
+      html, body { margin: 0; padding: 0; width: 1400px; height: 560px; overflow: hidden; font-family: "Manrope", system-ui, sans-serif; }
+      body {
+        background:
+          radial-gradient(circle at 15% 25%, rgba(231, 123, 84, 0.28), transparent 40%),
+          radial-gradient(circle at 88% 70%, rgba(14, 165, 233, 0.18), transparent 40%),
+          linear-gradient(135deg, #111827 0%, #1f2933 100%);
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 60px;
+        padding: 0 80px;
+      }
+      .mark { width: 220px; height: 220px; flex-shrink: 0; }
+      .copy { max-width: 720px; }
+      h1 {
+        font-family: "Fraunces", "Times New Roman", serif;
+        font-size: 96px;
+        line-height: 1;
+        letter-spacing: -0.03em;
+        margin: 0 0 24px;
+      }
+      .accent { color: #e77b54; }
+      .lede {
+        font-size: 24px;
+        color: rgba(255, 255, 255, 0.78);
+        line-height: 1.4;
+        margin: 0 0 24px;
+        max-width: 36ch;
+      }
+      .pwd-card {
+        display: inline-flex;
+        align-items: center;
+        gap: 16px;
+        padding: 16px 24px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 14px;
+      }
+      .pwd-card__value {
+        font-family: "Fraunces", serif;
+        font-size: 28px;
+        font-weight: 700;
+        margin: 0;
+      }
+      .pwd-card__pill {
+        padding: 6px 12px;
+        border-radius: 999px;
+        background: rgba(14, 165, 233, 0.2);
+        color: #bae6fd;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+      }
+    </style>
+  </head>
+  <body>
+    <svg class="mark" viewBox="0 0 512 512">
+      <defs>
+        <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#263443" />
+          <stop offset="100%" stop-color="#111827" />
+        </linearGradient>
+        <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#e77b54" />
+          <stop offset="100%" stop-color="#d96541" />
+        </linearGradient>
+      </defs>
+      <rect width="512" height="512" rx="128" fill="url(#bg)" stroke="rgba(255,255,255,0.1)" stroke-width="8" />
+      <path d="M 130 116 H 260 A 120 120 0 0 1 260 356 H 190 V 396 H 130 Z" fill="#ffffff" />
+      <circle cx="260" cy="236" r="46" fill="url(#accent)" />
+    </svg>
+    <div class="copy">
+      <h1>Passphrases <span class="accent">lisibles</span>.</h1>
+      <p class="lede">Génère 5 mots de passe mémorisables en français, en un clic, depuis ton navigateur.</p>
+      <div class="pwd-card">
+        <p class="pwd-card__value">Soleil-Rocaille12</p>
+        <span class="pwd-card__pill">TRÈS FORT · 145 BITS</span>
+      </div>
+    </div>
+  </body>
+</html>

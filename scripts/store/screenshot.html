@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&display=swap"
+    />
+    <style>
+      * { box-sizing: border-box; }
+      html, body { margin: 0; padding: 0; width: 1280px; height: 800px; overflow: hidden; font-family: "Manrope", system-ui, sans-serif; }
+
+      body {
+        background:
+          radial-gradient(circle at 20% 20%, rgba(231, 123, 84, 0.25), transparent 35%),
+          radial-gradient(circle at 85% 80%, rgba(14, 165, 233, 0.15), transparent 35%),
+          linear-gradient(135deg, #111827 0%, #1f2933 100%);
+        color: #ffffff;
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        align-items: center;
+        padding: 0 80px;
+      }
+
+      .pitch h1 {
+        font-family: "Fraunces", "Times New Roman", serif;
+        font-size: 64px;
+        line-height: 1.05;
+        letter-spacing: -0.02em;
+        margin: 0 0 24px;
+        color: #ffffff;
+      }
+
+      .pitch h1 .accent { color: #e77b54; }
+
+      .pitch p {
+        font-size: 22px;
+        line-height: 1.5;
+        color: rgba(255, 255, 255, 0.78);
+        margin: 0 0 32px;
+        max-width: 30ch;
+      }
+
+      .features {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 12px;
+      }
+
+      .features li {
+        font-size: 16px;
+        color: rgba(255, 255, 255, 0.85);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .features li::before {
+        content: "";
+        width: 8px;
+        height: 8px;
+        border-radius: 999px;
+        background: #e77b54;
+        flex-shrink: 0;
+      }
+
+      .popup {
+        justify-self: center;
+        width: 360px;
+        border-radius: 20px;
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.06);
+        overflow: hidden;
+        background: linear-gradient(180deg, #fbf7f0 0%, #f5efe6 100%);
+        color: #1f2933;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .popup__header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid rgba(31, 41, 51, 0.12);
+      }
+
+      .popup__mark { width: 36px; height: 36px; flex-shrink: 0; }
+
+      .popup__brand-name { font-weight: 800; font-size: 15px; margin: 0; letter-spacing: 0.02em; }
+      .popup__brand-tag { font-size: 11px; color: #566574; margin: 0; text-transform: uppercase; letter-spacing: 0.12em; }
+
+      .popup__results {
+        position: relative;
+        background:
+          radial-gradient(circle at top left, rgba(231, 123, 84, 0.22), transparent 60%),
+          linear-gradient(180deg, #1f2933 0%, #263443 100%);
+        color: #f7f1ea;
+        padding: 10px;
+        border-radius: 14px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .pwd {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 9px 10px;
+        border-radius: 9px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .pwd__value {
+        flex: 1;
+        font-family: "Manrope", monospace;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.01em;
+        word-break: break-all;
+        margin: 0;
+      }
+
+      .pwd__copy {
+        width: 28px;
+        height: 28px;
+        border-radius: 7px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        display: grid;
+        place-items: center;
+        color: #f7f1ea;
+        flex-shrink: 0;
+      }
+
+      .pwd__copy svg { width: 13px; height: 13px; }
+
+      .popup__cta {
+        padding: 11px 14px;
+        border-radius: 10px;
+        background: #1f2933;
+        color: #ffffff;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        text-align: center;
+      }
+
+      .popup__settings {
+        border: 1px solid rgba(31, 41, 51, 0.12);
+        border-radius: 12px;
+        background: rgba(255, 252, 247, 0.92);
+        padding: 11px 14px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-weight: 700;
+        font-size: 13px;
+      }
+
+      .popup__settings svg { width: 14px; height: 14px; color: #566574; }
+
+      .popup__footer {
+        text-align: center;
+        font-size: 11px;
+        color: #566574;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="pitch">
+      <h1>Des mots de passe <span class="accent">lisibles</span>,<br />toujours costauds.</h1>
+      <p>5 passphrases françaises mémorisables, en un clic, depuis n'importe quel onglet.</p>
+      <ul class="features">
+        <li>22 000 mots français · entropie en bits</li>
+        <li>Personnalisation complète : séparateur, chiffres, accents</li>
+        <li>Préférences mémorisées · copie en 1 clic</li>
+        <li>Aucun compte, aucun tracking, open source</li>
+      </ul>
+    </div>
+
+    <div class="popup">
+      <div class="popup__header">
+        <svg class="popup__mark" viewBox="0 0 512 512">
+          <defs>
+            <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#263443" />
+              <stop offset="100%" stop-color="#111827" />
+            </linearGradient>
+            <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#e77b54" />
+              <stop offset="100%" stop-color="#d96541" />
+            </linearGradient>
+          </defs>
+          <rect width="512" height="512" rx="128" fill="url(#bg)" />
+          <path d="M 130 116 H 260 A 120 120 0 0 1 260 356 H 190 V 396 H 130 Z" fill="#ffffff" />
+          <circle cx="260" cy="236" r="46" fill="url(#accent)" />
+        </svg>
+        <div>
+          <p class="popup__brand-name">Passphrase</p>
+          <p class="popup__brand-tag">Générateur français</p>
+        </div>
+      </div>
+
+      <div class="popup__results">
+        <div class="pwd"><p class="pwd__value">Cerise-Voyage42$</p><span class="pwd__copy"><svg viewBox="0 0 24 24" fill="none"><rect x="9" y="9" width="11" height="11" rx="2" stroke="currentColor" stroke-width="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></div>
+        <div class="pwd"><p class="pwd__value">Mésange/Crépuscule61?</p><span class="pwd__copy"><svg viewBox="0 0 24 24" fill="none"><rect x="9" y="9" width="11" height="11" rx="2" stroke="currentColor" stroke-width="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></div>
+        <div class="pwd"><p class="pwd__value">Vermeil*Aubépine09;</p><span class="pwd__copy"><svg viewBox="0 0 24 24" fill="none"><rect x="9" y="9" width="11" height="11" rx="2" stroke="currentColor" stroke-width="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></div>
+        <div class="pwd"><p class="pwd__value">Lichen+Marécage 76$</p><span class="pwd__copy"><svg viewBox="0 0 24 24" fill="none"><rect x="9" y="9" width="11" height="11" rx="2" stroke="currentColor" stroke-width="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></div>
+        <div class="pwd"><p class="pwd__value">Soleil-Rocaille12!</p><span class="pwd__copy"><svg viewBox="0 0 24 24" fill="none"><rect x="9" y="9" width="11" height="11" rx="2" stroke="currentColor" stroke-width="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></div>
+      </div>
+
+      <div class="popup__cta">Générer 5 passphrases</div>
+
+      <div class="popup__settings">
+        <span>Personnalisation</span>
+        <svg viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+
+      <div class="popup__footer">passphrase.ch · GitHub</div>
+    </div>
+  </body>
+</html>

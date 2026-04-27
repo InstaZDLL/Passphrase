@@ -1,5 +1,16 @@
 {
-  "name": "Passphrase",
+  "name": "passphrase",
+  "version": "1.0.0",
+  "description": "Memorable French passphrase generator with entropy scoring and a public REST API.",
+  "license": "MIT",
+  "homepage": "https://www.passphrase.ch",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/InstaZDLL/Passphrase.git"
+  },
+  "bugs": {
+    "url": "https://github.com/InstaZDLL/Passphrase/issues"
+  },
   "private": true,
   "type": "module",
   "scripts": {

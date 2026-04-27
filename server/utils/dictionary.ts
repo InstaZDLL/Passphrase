@@ -1,7 +1,4 @@
-import { readFile } from 'node:fs/promises'
-import { resolve } from 'node:path'
-
-const dictionaryPath = resolve(process.cwd(), 'server/data/db.csv')
+const BOM = '﻿'
 
 let cachedWords: string[] | null = null
 
@@ -10,12 +7,16 @@ export async function getDictionaryWords(): Promise<string[]> {
     return cachedWords
   }
 
-  const content = await readFile(dictionaryPath, 'utf8')
+  const content = await useStorage('assets:server').getItem<string>('db.csv')
+  if (!content) {
+    throw new Error('Dictionary asset not found: assets:server/db.csv')
+  }
 
-  cachedWords = content
-    .replace(/^\uFEFF/, '')
+  const stripped = content.startsWith(BOM) ? content.slice(1) : content
+
+  cachedWords = stripped
     .split(/\r?\n/u)
-    .map((word: string) => word.trim())
+    .map(word => word.trim())
     .filter(Boolean)
 
   return cachedWords ?? []

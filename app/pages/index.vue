@@ -214,9 +214,9 @@ async function copyApiExample() {
               <p class="eyebrow !mb-1">
                 Préférences
               </p>
-              <h3 class="font-display text-2xl text-gray-900">
+              <h2 class="font-display text-2xl text-gray-900">
                 Personnalise ton schéma
-              </h3>
+              </h2>
             </div>
 
             <button

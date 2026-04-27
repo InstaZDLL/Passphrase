@@ -33,11 +33,12 @@ export default defineNuxtConfig({
     enabled: isProduction,
     nonce: true,
     corsHandler: false,
+    sri: false,
     headers: {
       contentSecurityPolicy: {
         'default-src': ["'self'"],
         'script-src': ["'self'", "'nonce-{{nonce}}'", "'report-sample'", 'https://va.vercel-scripts.com'],
-        'style-src': ["'self'", "'nonce-{{nonce}}'", "'report-sample'"],
+        'style-src': ["'self'", "'unsafe-inline'", "'report-sample'"],
         'object-src': ["'none'"],
         'base-uri': ["'self'"],
         'connect-src': ["'self'", 'https://va.vercel-scripts.com', 'https://vitals.vercel-insights.com'],

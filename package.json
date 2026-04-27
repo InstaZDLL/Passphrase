@@ -14,20 +14,20 @@
     "typecheck": "nuxt typecheck"
   },
   "dependencies": {
-    "@iconify-json/lucide": "^1.2.102",
-    "@iconify-json/simple-icons": "^1.2.78",
+    "@iconify-json/lucide": "^1.2.104",
+    "@iconify-json/simple-icons": "^1.2.80",
     "@nuxt/a11y": "1.0.0-alpha.1",
     "@nuxt/hints": "1.0.3",
-    "@nuxt/ui": "^4.6.1",
+    "@nuxt/ui": "^4.7.0",
     "nuxt": "^4.4.2",
-    "tailwindcss": "^4.2.2"
+    "tailwindcss": "^4.2.4"
   },
   "devDependencies": {
     "@nuxt/eslint": "^1.15.2",
     "@types/node": "^25.6.0",
-    "eslint": "^10.2.0",
-    "typescript": "^6.0.2",
-    "vue-tsc": "^3.2.6"
+    "eslint": "^10.2.1",
+    "typescript": "^6.0.3",
+    "vue-tsc": "^3.2.7"
   },
-  "packageManager": "pnpm@10.33.0"
+  "packageManager": "pnpm@10.33.2+sha512.a90faf6feeab71ad6c6e57f94e0fe1a12f5dcc22cd754db40ae9593eb6a3e0b6b12e3540218bb37ae083404b1f2ce6db2a4121e979829b4aff94b99f49da1cf8"
 }

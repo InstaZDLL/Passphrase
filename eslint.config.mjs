@@ -21,7 +21,6 @@ export default withNuxt(
       '.output/**',
       '.data/**',
       'coverage/**',
-      'export/**',
       'extension/**',
       'PassphraseChromeExtension/**'
     ]

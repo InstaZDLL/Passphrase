@@ -2,7 +2,7 @@
 // Update the email below before going live.
 
 export const legalInfo = {
-  contactEmail: 'contact@passphrase.ch',
+  contactEmail: 'contact@southlabs.fr',
   lastUpdated: '2026-04-27'
 } as const
 

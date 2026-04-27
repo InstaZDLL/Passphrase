@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&family=Fraunces:opsz,wght@9..144,700;9..144,800&display=swap"
+    />
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+        width: 1200px;
+        height: 630px;
+        overflow: hidden;
+      }
+      svg {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+      <defs>
+        <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#111827" />
+          <stop offset="100%" stop-color="#1f2933" />
+        </linearGradient>
+        <linearGradient id="accent-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#e77b54" />
+          <stop offset="100%" stop-color="#d96541" />
+        </linearGradient>
+        <filter id="blur" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="100" />
+        </filter>
+      </defs>
+
+      <rect width="1200" height="630" fill="url(#bg-grad)" />
+
+      <circle cx="200" cy="100" r="350" fill="#e77b54" opacity="0.25" filter="url(#blur)" />
+      <circle cx="1050" cy="500" r="400" fill="#0ea5e9" opacity="0.15" filter="url(#blur)" />
+
+      <g transform="translate(600, 260)">
+        <g transform="translate(-48, -170) scale(0.1875)">
+          <rect width="512" height="512" rx="128" fill="#ffffff" opacity="0.05" stroke="#ffffff" stroke-width="8" stroke-opacity="0.1" />
+          <path d="M 130 116 H 260 A 120 120 0 0 1 260 356 H 190 V 396 H 130 Z" fill="#ffffff" />
+          <circle cx="260" cy="236" r="46" fill="url(#accent-grad)" />
+        </g>
+
+        <text x="0" y="-15" font-family="Fraunces, Georgia, serif" font-size="68" font-weight="bold" fill="#ffffff" text-anchor="middle" letter-spacing="-1">
+          Des mots de passe lisibles,
+        </text>
+        <text x="0" y="65" font-family="Fraunces, Georgia, serif" font-size="68" font-weight="bold" fill="#ffffff" text-anchor="middle" letter-spacing="-1">
+          toujours costauds.
+        </text>
+
+        <g transform="translate(-300, 140)">
+          <rect width="600" height="135" rx="24" fill="#ffffff" opacity="0.05" stroke="#ffffff" stroke-width="2" stroke-opacity="0.1" />
+          <text x="300" y="65" font-family="Manrope, system-ui, sans-serif" font-size="38" font-weight="800" fill="#ffffff" text-anchor="middle">
+            Soleil-Rocaille12
+          </text>
+          <rect x="200" y="85" width="200" height="32" rx="16" fill="#0ea5e9" opacity="0.2" />
+          <text x="300" y="106" font-family="Manrope, system-ui, sans-serif" font-size="14" font-weight="700" fill="#bae6fd" text-anchor="middle" letter-spacing="1">
+            TRÈS FORT · 145 BITS
+          </text>
+        </g>
+      </g>
+    </svg>
+  </body>
+</html>

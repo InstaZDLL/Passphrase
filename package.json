@@ -11,7 +11,8 @@
     "postinstall": "nuxt prepare",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "typecheck": "nuxt typecheck"
+    "typecheck": "nuxt typecheck",
+    "og": "node scripts/og/generate.mjs"
   },
   "dependencies": {
     "@iconify-json/lucide": "^1.2.104",
@@ -30,6 +31,7 @@
     "@nuxt/eslint": "^1.15.2",
     "@types/node": "^25.6.0",
     "eslint": "^10.2.1",
+    "puppeteer-core": "^24.42.0",
     "typescript": "^6.0.3",
     "vue-tsc": "^3.2.7"
   },

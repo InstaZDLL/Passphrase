@@ -21,7 +21,9 @@ export default withNuxt(
       '.output/**',
       '.data/**',
       'coverage/**',
-      'export/**'
+      'export/**',
+      'extension/**',
+      'PassphraseChromeExtension/**'
     ]
   })
   .override('nuxt/typescript/rules', {

@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 🔒 Faille de sécurité
+    url: https://github.com/InstaZDLL/Passphrase/security/advisories/new
+    about: Pour les vulnérabilités, utilise GitHub Security Advisories (canal privé) — pas une issue publique.
+  - name: 💬 Question générale
+    url: https://github.com/InstaZDLL/Passphrase/discussions
+    about: Pour les questions d'usage ou les discussions ouvertes, utilise GitHub Discussions plutôt qu'une issue.
+  - name: 📚 Documentation
+    url: https://www.passphrase.ch
+    about: La doc utilisateur (générateur, API, politique de confidentialité) est en ligne sur le site.

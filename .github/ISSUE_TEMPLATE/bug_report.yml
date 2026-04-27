@@ -1,0 +1,88 @@
+name: 🐛 Bug report
+description: Signaler un comportement inattendu ou une régression
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Merci de signaler ce bug. Plus le rapport est précis, plus le fix sera rapide.
+
+        > ⚠️ **Faille de sécurité ?** Ne l'écris pas ici. Suis la procédure dans [SECURITY.md](../SECURITY.md).
+
+  - type: input
+    id: summary
+    attributes:
+      label: Résumé
+      description: Une phrase qui décrit le problème.
+      placeholder: "La copie de passphrase échoue sur Safari iOS 17"
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Étapes de reproduction
+      description: La séquence minimale pour reproduire le bug.
+      placeholder: |
+        1. Ouvrir https://www.passphrase.ch sur Safari iOS 17
+        2. Cliquer sur "Générer maintenant"
+        3. Tap sur "Copier" sur la première passphrase
+        4. Coller dans Notes
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Comportement attendu
+      placeholder: La passphrase est collée dans Notes
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Comportement observé
+      placeholder: Rien ne se passe, le presse-papier reste vide
+    validations:
+      required: true
+
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Surface concernée
+      options:
+        - Site web (passphrase.ch)
+        - API publique (/api/passwords)
+        - Extension Chrome
+        - Documentation / README
+        - Autre
+    validations:
+      required: true
+
+  - type: input
+    id: env
+    attributes:
+      label: Environnement
+      description: Navigateur, OS, version. Pour l'extension, indique la version Chrome.
+      placeholder: "Safari 17.4 / iOS 17.5"
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs / captures d'écran (optionnel)
+      description: Console errors, requêtes réseau, screenshot. Utile pour les bugs visuels ou réseau.
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Vérifications préalables
+      options:
+        - label: J'ai cherché dans les issues existantes pour éviter un doublon
+          required: true
+        - label: J'ai testé sur la dernière version déployée (passphrase.ch)
+          required: true
+        - label: Ce n'est pas une vulnérabilité de sécurité (sinon → SECURITY.md)
+          required: true

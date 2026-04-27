@@ -1,0 +1,66 @@
+name: ✨ Feature request
+description: Proposer une nouvelle fonctionnalité ou amélioration
+labels: ["enhancement", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Merci pour ta proposition. Décris d'abord le **besoin** avant la solution — souvent, plusieurs solutions sont possibles.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problème ou besoin
+      description: Quel cas d'usage ou frustration motive cette demande ?
+      placeholder: "Quand je génère une passphrase pour un coffre-fort qui interdit les espaces, je dois cliquer plusieurs fois pour en obtenir une sans espace."
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Solution proposée
+      description: Comment imagines-tu la résolution ? (UI, paramètre API, comportement)
+      placeholder: "Ajouter une option 'Exclure les espaces' qui force le séparateur à autre chose qu'un espace."
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives envisagées (optionnel)
+      placeholder: "Filtrer côté client après génération, mais ça gaspille des appels API."
+
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Surface concernée
+      options:
+        - Site web (passphrase.ch)
+        - API publique (/api/passwords)
+        - Extension Chrome
+        - Documentation / README
+        - Autre
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Importance pour toi
+      options:
+        - Nice-to-have
+        - Améliorerait significativement mon usage
+        - Bloquant — je ne peux pas utiliser le service sans
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Vérifications préalables
+      options:
+        - label: J'ai cherché dans les issues existantes (ouvertes ET fermées) pour éviter un doublon
+          required: true
+        - label: La fonctionnalité a un sens pour plusieurs utilisateurs, pas seulement mon cas particulier
+          required: false

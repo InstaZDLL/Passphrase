@@ -20,7 +20,8 @@ export default withNuxt(
     ignores: [
       '.output/**',
       '.data/**',
-      'coverage/**'
+      'coverage/**',
+      'export/**'
     ]
   })
   .override('nuxt/typescript/rules', {

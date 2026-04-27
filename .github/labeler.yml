@@ -1,0 +1,58 @@
+# Path-based labels for actions/labeler
+# Synced on every PR open/sync via .github/workflows/label-pr.yml
+
+"area: web":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "app/**"
+          - "shared/**"
+
+"area: api":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "server/**"
+
+"area: extension":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "extension/**"
+
+"area: ci":
+  - changed-files:
+      - any-glob-to-any-file:
+          - ".github/workflows/**"
+          - ".github/dependabot.yml"
+          - "renovate.json"
+          - "eslint.config.mjs"
+          - "tsconfig.json"
+          - "nuxt.config.ts"
+
+"area: design":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "public/og-image.png"
+          - "public/favicon.svg"
+          - "public/favicon.ico"
+          - "public/apple-touch-icon.png"
+          - "public/icon-*.png"
+          - "public/manifest.webmanifest"
+          - "scripts/og/**"
+          - "app/assets/css/**"
+
+"documentation":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "README.md"
+          - ".github/CONTRIBUTING.md"
+          - ".github/CODE_OF_CONDUCT.md"
+          - ".github/SECURITY.md"
+          - ".github/ISSUE_TEMPLATE/**"
+          - ".github/PULL_REQUEST_TEMPLATE.md"
+          - "extension/README.md"
+          - "LICENSE"
+
+"dependencies":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "package.json"
+          - "pnpm-lock.yaml"

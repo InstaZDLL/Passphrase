@@ -152,7 +152,7 @@ const currentYear = new Date().getFullYear()
           Confidentialité
         </NuxtLink>
         <a
-          href="https://chromewebstore.google.com/detail/g%C3%A9n%C3%A9rateur-de-passphrase/bhlgfoknmmhgpfoanhoemjccephcanjd"
+          href="https://chromewebstore.google.com/detail/passphrase-%E2%80%94-g%C3%A9n%C3%A9rateur-d/fjonldepnpkjnldjhkpinojaeklmdhmp"
           target="_blank"
           rel="noreferrer noopener"
         >

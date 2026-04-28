@@ -214,5 +214,7 @@ Il s'agit d'une **réécriture en Nuxt 4** d'un projet original en Symfony :
 
 Tous les copyrights sont conservés conformément aux exigences de la licence MIT.
 
-L'extension Chrome compagnon est maintenue par Alexandre Monchain :
-[Chrome Web Store](https://chromewebstore.google.com/detail/g%C3%A9n%C3%A9rateur-de-passphrase/bhlgfoknmmhgpfoanhoemjccephcanjd) · [Code source](https://github.com/AlexandreMonchain/PassphraseChromeExtension)
+L'extension Chrome (refonte 2.0) est disponible sur le store :
+[Chrome Web Store](https://chromewebstore.google.com/detail/passphrase-%E2%80%94-g%C3%A9n%C3%A9rateur-d/fjonldepnpkjnldjhkpinojaeklmdhmp) · [Code source](./extension/)
+
+L'extension v1 originale d'Alexandre Monchain reste disponible : [Chrome Web Store](https://chromewebstore.google.com/detail/g%C3%A9n%C3%A9rateur-de-passphrase/bhlgfoknmmhgpfoanhoemjccephcanjd) · [Code source](https://github.com/AlexandreMonchain/PassphraseChromeExtension)

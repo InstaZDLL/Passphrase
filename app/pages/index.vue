@@ -428,7 +428,7 @@ async function copyApiExample() {
         </div>
 
         <a
-          href="https://chromewebstore.google.com/detail/g%C3%A9n%C3%A9rateur-de-passphrase/bhlgfoknmmhgpfoanhoemjccephcanjd"
+          href="https://chromewebstore.google.com/detail/passphrase-%E2%80%94-g%C3%A9n%C3%A9rateur-d/fjonldepnpkjnldjhkpinojaeklmdhmp"
           target="_blank"
           rel="noreferrer noopener"
           class="shrink-0 px-6 py-3 bg-gray-900 !text-white rounded-full font-bold hover:bg-gray-800 transition-colors"

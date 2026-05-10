@@ -27,25 +27,25 @@
     "store-assets": "node scripts/store/generate.mjs"
   },
   "dependencies": {
-    "@iconify-json/lucide": "^1.2.104",
-    "@iconify-json/simple-icons": "^1.2.80",
+    "@iconify-json/lucide": "^1.2.106",
+    "@iconify-json/simple-icons": "^1.2.81",
     "@nuxt/a11y": "1.0.0-alpha.1",
     "@nuxt/fonts": "^0.14.0",
     "@nuxt/hints": "1.0.3",
-    "@nuxt/ui": "^4.7.0",
+    "@nuxt/ui": "^4.7.1",
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",
-    "nuxt": "^4.4.2",
+    "nuxt": "^4.4.4",
     "nuxt-security": "^2.5.1",
-    "tailwindcss": "^4.2.4"
+    "tailwindcss": "^4.3.0"
   },
   "devDependencies": {
     "@nuxt/eslint": "^1.15.2",
-    "@types/node": "^25.6.0",
-    "eslint": "^10.2.1",
-    "puppeteer-core": "^24.42.0",
+    "@types/node": "^25.6.2",
+    "eslint": "^10.3.0",
+    "puppeteer-core": "^24.43.0",
     "typescript": "^6.0.3",
-    "vue-tsc": "^3.2.7"
+    "vue-tsc": "^3.2.8"
   },
-  "packageManager": "pnpm@10.33.2+sha512.a90faf6feeab71ad6c6e57f94e0fe1a12f5dcc22cd754db40ae9593eb6a3e0b6b12e3540218bb37ae083404b1f2ce6db2a4121e979829b4aff94b99f49da1cf8"
+  "packageManager": "pnpm@11.0.9+sha512.34ce82e6780233cf9cad8685029a8f81d2e06196c5a9bad98879f7424940c6817c4e4524fb7d38b8553ceed48b9758b8ebaf1abd3600c232c4c8cf7366086f38"
 }

@@ -145,7 +145,7 @@ export function generatePasswords(
   const passwords: GeneratedPassword[] = []
 
   for (let index = 0; index < count; index += 1) {
-    let password = ''
+    let password: string
 
     do {
       const passwordParts = Array.from({ length: options.nb_mots }, () => transformWord(sample(words), options))

@@ -2,7 +2,7 @@ export const entropyArticle = {
   title: 'Comprendre l’entropie des mots de passe',
   description: 'Ce que mesure l’entropie, comment elle se calcule, et pourquoi une passphrase reste souvent plus réaliste qu’un mot de passe illisible.',
   publishedAt: '2024-11-03',
-  author: 'Alexandre Monchain',
+  author: 'InstaZDLL',
   heroImage: '/images/blog-entropie.webp',
   formula: 'Entropie = longueur × log2(taille de l’ensemble de caractères)',
   sections: [

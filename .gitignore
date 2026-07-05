@@ -31,3 +31,6 @@ review.txt
 
 # Chrome Web Store assets (generated, regenerate via `pnpm store-assets`)
 chrome-store/
+
+# Vercel build output
+.vercel

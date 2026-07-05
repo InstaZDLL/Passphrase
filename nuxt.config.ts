@@ -45,6 +45,7 @@ export default defineNuxtConfig({
     nonce: true,
     corsHandler: false,
     sri: false,
+    rateLimiter: false,
     headers: {
       contentSecurityPolicy: {
         'default-src': ['\'self\''],

@@ -27,8 +27,8 @@
     "store-assets": "node scripts/store/generate.mjs"
   },
   "dependencies": {
-    "@iconify-json/lucide": "^1.2.120",
-    "@iconify-json/simple-icons": "^1.2.92",
+    "@iconify-json/lucide": "^1.2.123",
+    "@iconify-json/simple-icons": "^1.2.93",
     "@nuxt/a11y": "1.0.0-alpha.1",
     "@nuxt/fonts": "^0.14.0",
     "@nuxt/hints": "1.1.4",
@@ -40,12 +40,12 @@
     "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
-    "@nuxt/eslint": "^1.16.0",
+    "@nuxt/eslint": "^1.17.0",
     "@types/node": "^25.9.5",
-    "eslint": "^10.8.0",
-    "puppeteer-core": "^25.4.0",
+    "eslint": "^10.8.1",
+    "puppeteer-core": "^25.8.0",
     "typescript": "^6.0.3",
-    "vue-tsc": "^3.3.8"
+    "vue-tsc": "^3.3.10"
   },
-  "packageManager": "pnpm@11.18.0+sha512.33d83c77da82f49fba836925c6f1b841181ec3132b670639bd012f7075f5c7cf634c5f870147c19aae7478fac01df09d8892e880454896edd23ee9b33757563c"
+  "packageManager": "pnpm@11.22.0+sha512.1ff870c4c6133dfd88fb2afc46dd13d47f09c9794b438c6fdb47ca98caf3bc16381ee0be93a091b8e3824cf01f889f46d7d9e20910fb0be1ab0fb5baa80dd621"
 }

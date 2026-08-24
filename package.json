@@ -27,7 +27,7 @@
     "store-assets": "node scripts/store/generate.mjs"
   },
   "dependencies": {
-    "@iconify-json/lucide": "^1.2.124",
+    "@iconify-json/lucide": "^1.2.125",
     "@iconify-json/simple-icons": "^1.2.93",
     "@nuxt/a11y": "1.0.0-alpha.1",
     "@nuxt/fonts": "^0.14.0",

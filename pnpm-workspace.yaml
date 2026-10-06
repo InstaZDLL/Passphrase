@@ -1,6 +1,6 @@
 overrides:
   esbuild@<0.28.1: '>=0.28.2'
-  h3: ^1.15.11
+  h3: ^2.0.1
 allowBuilds:
   '@parcel/watcher': true
   esbuild: true

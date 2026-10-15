@@ -193,7 +193,7 @@ Pour configurer le projet Pages connecté à GitHub :
 3. Répertoire de sortie : `dist`
 4. Activer Web Analytics dans **Metrics** après le premier déploiement
 
-Les URL `passphrase.pages.dev` et leurs aperçus reçoivent `X-Robots-Tag: noindex`.
+Les URL `passphrase-landing.pages.dev` et leurs aperçus reçoivent `X-Robots-Tag: noindex`.
 Le domaine racine `passphrase.ch` redirige vers `www.passphrase.ch`.
 Aucune variable d'environnement applicative n'est requise.
 4. Configurer le domaine custom (le redirect apex → www se fait côté Vercel/DNS)

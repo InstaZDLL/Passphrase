@@ -1,7 +1,7 @@
 export default defineEventHandler((event) => {
   const host = getRequestHost(event).toLowerCase().split(':')[0] ?? ''
 
-  if (host === 'passphrase.pages.dev' || host.endsWith('.passphrase.pages.dev')) {
+  if (host === 'passphrase-landing.pages.dev' || host.endsWith('.passphrase-landing.pages.dev')) {
     setResponseHeader(event, 'X-Robots-Tag', 'noindex')
   }
 

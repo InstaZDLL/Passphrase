@@ -9,7 +9,7 @@
 [![Nuxt](https://img.shields.io/badge/Nuxt-4-00DC82?style=for-the-badge&logo=nuxt&logoColor=white)](https://nuxt.com)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-38BDF8?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
-[![Deployed on Vercel](https://img.shields.io/badge/Vercel-deployed-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://www.passphrase.ch)
+[![Deployed on Cloudflare Pages](https://img.shields.io/badge/Cloudflare%20Pages-deployed-F38020?style=for-the-badge&logo=cloudflarepages&logoColor=white)](https://www.passphrase.ch)
 [![Renovate](https://img.shields.io/badge/Renovate-enabled-1A1F6C?style=for-the-badge&logo=renovatebot&logoColor=white)](https://docs.renovatebot.com/)
 
 **Générateur de passphrases françaises mémorisables, avec calcul d'entropie et API publique.**
@@ -44,10 +44,10 @@ Passphrase génère ces combinaisons en un clic, calcule leur entropie en bits, 
 | UI | [Nuxt UI 4](https://ui.nuxt.com) + [Tailwind CSS 4](https://tailwindcss.com) |
 | Polices | Manrope + Fraunces (self-hostées via [@nuxt/fonts](https://fonts.nuxt.com)) |
 | Sécurité | [nuxt-security](https://nuxt-security.vercel.app/) (CSP avec nonce, HSTS, Permissions-Policy) |
-| Analytics | [Vercel Web Analytics](https://vercel.com/analytics) + [Speed Insights](https://vercel.com/speed-insights) |
+| Analytics | [Cloudflare Web Analytics](https://developers.cloudflare.com/web-analytics/) |
 | CI | GitHub Actions (lint, typecheck, build) |
 | Deps | [Renovate](https://docs.renovatebot.com/) |
-| Hébergement | [Vercel](https://vercel.com) |
+| Hébergement | [Cloudflare Pages](https://developers.cloudflare.com/pages/) |
 
 ## Démarrage rapide
 
@@ -138,13 +138,12 @@ L'API retourne aussi `entropy` et `class` sur la route privée `/api/passwords/p
 │   │   └── blog/[slug].vue         # Article (entropie)
 │   ├── components/passphrase/      # PasswordList, EntropyBadge
 │   ├── data/                       # Site config, article, info légales
-│   ├── plugins/                    # Vercel Analytics + Speed Insights
 │   └── assets/css/main.css         # Tailwind + tokens custom
 ├── server/
 │   ├── api/passwords.get.ts        # API publique
 │   ├── api/passwords/preview.get.ts# API frontend (avec entropy)
 │   ├── middleware/cors.ts          # CORS public sur /api/passwords*
-│   ├── data/db.csv                 # Dictionnaire français (~22 000 mots)
+│   ├── assets/db.csv               # Dictionnaire français
 │   └── utils/dictionary.ts         # Chargement et filtrage du dictionnaire
 ├── shared/passphrase.ts            # Types + génération + entropy (ISO client/serveur)
 ├── public/                         # Icônes, manifest, sitemap, robots
@@ -156,7 +155,7 @@ L'API retourne aussi `entropy` et `class` sur la route privée `/api/passwords/p
 | Mesure | Détail |
 | --- | --- |
 | HSTS | `max-age=31536000; includeSubDomains; preload` |
-| CSP | strict avec nonce par requête sur `script-src`, `'self'` sur tout le reste, beacons Vercel whitelistés |
+| CSP | strict avec nonce par requête sur `script-src`, `'self'` sur tout le reste, beacon Cloudflare autorisé |
 | X-Frame-Options | `DENY` |
 | X-Content-Type-Options | `nosniff` |
 | Referrer-Policy | `strict-origin-when-cross-origin` |
@@ -174,7 +173,7 @@ Build de production audité avec Lighthouse desktop (localhost) :
 | --- | --- |
 | Performance | 99 |
 | Accessibility | 100 |
-| Best Practices | 96 (→ 100 sur Vercel, les beacons Analytics 404 sur localhost) |
+| Best Practices | 96 lors de la mesure locale initiale |
 | SEO | 100 |
 
 Core Web Vitals : LCP &lt; 1 s · CLS 0 · TBT 0 ms.
@@ -183,11 +182,20 @@ Optimisations clés : self-hosting des polices, conversion des images en WebP, `
 
 ## Déploiement
 
-Le projet cible **Vercel** (zero-config Nuxt). Pour déployer ton propre instance :
+Le projet cible **Cloudflare Pages** avec le preset Nitro `cloudflare_pages`.
+Le site et les deux routes `/api/passwords` sont servis par le même déploiement.
+L'extension Chrome conserve son adresse API : `https://www.passphrase.ch/api/passwords`.
 
-1. Fork ce repo
-2. Importer dans Vercel (auto-détection du preset Nuxt)
-3. Aucune variable d'environnement requise
+Pour configurer le projet Pages connecté à GitHub :
+
+1. Branche de production : `main`
+2. Commande de build : `pnpm build`
+3. Répertoire de sortie : `dist`
+4. Activer Web Analytics dans **Metrics** après le premier déploiement
+
+Les URL `passphrase.pages.dev` et leurs aperçus reçoivent `X-Robots-Tag: noindex`.
+Le domaine racine `passphrase.ch` redirige vers `www.passphrase.ch`.
+Aucune variable d'environnement applicative n'est requise.
 4. Configurer le domaine custom (le redirect apex → www se fait côté Vercel/DNS)
 
 Le pipeline de build télécharge les polices Google au build (via `@nuxt/fonts`) puis les self-host — aucun appel runtime vers Google Fonts.

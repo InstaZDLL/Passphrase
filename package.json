@@ -18,7 +18,6 @@
     "dev": "nuxt dev",
     "preview": "nuxt preview",
     "start": "node .output/server/index.mjs",
-    "postbuild": "node scripts/fix-nitro-vue-runtime.mjs",
     "postinstall": "nuxt prepare",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
@@ -33,8 +32,6 @@
     "@nuxt/fonts": "^0.14.0",
     "@nuxt/hints": "1.1.4",
     "@nuxt/ui": "^4.11.3",
-    "@vercel/analytics": "^2.0.1",
-    "@vercel/speed-insights": "^2.0.0",
     "nuxt": "^4.6.0",
     "nuxt-security": "^2.6.0",
     "tailwindcss": "^4.3.3"

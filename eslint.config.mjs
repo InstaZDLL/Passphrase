@@ -19,6 +19,7 @@ export default withNuxt(
     name: 'passphrase/ignores',
     ignores: [
       '.output/**',
+      '.wrangler/**',
       '.data/**',
       'coverage/**',
       'extension/**',

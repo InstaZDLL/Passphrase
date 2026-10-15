@@ -8,8 +8,6 @@ export default defineNuxtConfig({
     '@nuxt/a11y',
     '@nuxt/hints',
     '@nuxt/fonts',
-    '@vercel/analytics/nuxt',
-    '@vercel/speed-insights/nuxt',
     'nuxt-security'
   ],
 
@@ -20,6 +18,10 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
 
   compatibilityDate: '2025-01-15',
+
+  nitro: {
+    preset: 'cloudflare_pages'
+  },
 
   eslint: {
     config: {
@@ -49,11 +51,11 @@ export default defineNuxtConfig({
     headers: {
       contentSecurityPolicy: {
         'default-src': ['\'self\''],
-        'script-src': ['\'self\'', '\'nonce-{{nonce}}\'', '\'report-sample\'', 'https://va.vercel-scripts.com'],
+        'script-src': ['\'self\'', '\'nonce-{{nonce}}\'', '\'report-sample\'', 'https://static.cloudflareinsights.com'],
         'style-src': ['\'self\'', '\'unsafe-inline\'', '\'report-sample\''],
         'object-src': ['\'none\''],
         'base-uri': ['\'self\''],
-        'connect-src': ['\'self\'', 'https://va.vercel-scripts.com', 'https://vitals.vercel-insights.com'],
+        'connect-src': ['\'self\'', 'https://cloudflareinsights.com'],
         'font-src': ['\'self\''],
         'frame-src': ['\'self\''],
         'img-src': ['\'self\''],

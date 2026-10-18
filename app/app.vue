@@ -35,6 +35,17 @@ useHead({
   ]
 })
 
+if (['passphrase.ch', 'www.passphrase.ch'].includes(useRequestURL().hostname)) {
+  useHead({
+    script: [{
+      'type': 'module',
+      'src': 'https://static.cloudflareinsights.com/beacon.min.js',
+      'data-cf-beacon': '{"token":"63059ce612224c5abe1f13f55a0073e4"}',
+      'tagPosition': 'bodyClose'
+    }]
+  })
+}
+
 useSeoMeta({
   titleTemplate: titleChunk => titleChunk ? `${titleChunk} · ${title}` : title,
   description,

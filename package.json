@@ -26,23 +26,23 @@
     "store-assets": "node scripts/store/generate.mjs"
   },
   "dependencies": {
-    "@iconify-json/lucide": "^1.2.157",
-    "@iconify-json/simple-icons": "^1.2.103",
+    "@iconify-json/lucide": "^1.2.160",
+    "@iconify-json/simple-icons": "^1.2.104",
     "@nuxt/a11y": "1.0.0-alpha.1",
-    "@nuxt/fonts": "^1.2.0",
-    "@nuxt/hints": "1.1.5",
-    "@nuxt/ui": "^4.13.0",
+    "@nuxt/fonts": "^1.2.1",
+    "@nuxt/hints": "1.1.6",
+    "@nuxt/ui": "^4.13.1",
     "nuxt": "^4.6.4",
     "nuxt-security": "^2.7.0",
     "tailwindcss": "^4.3.5"
   },
   "devDependencies": {
     "@nuxt/eslint": "^1.17.0",
-    "@types/node": "^26.6.6",
+    "@types/node": "^26.6.11",
     "eslint": "^10.15.0",
-    "puppeteer-core": "^25.18.1",
+    "puppeteer-core": "^25.19.0",
     "typescript": "^6.0.3",
     "vue-tsc": "^3.3.14"
   },
-  "packageManager": "pnpm@12.21.0"
+  "packageManager": "pnpm@12.23.0"
 }
